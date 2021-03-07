@@ -5,6 +5,7 @@ import {SearchBox} from './containers/searchbox/search-box-component'
 type MyState = {
   users: any;
   searchField: any;
+  title: "";
 }
 
 
@@ -17,7 +18,7 @@ export default class App extends React.Component<MyProps, MyState> {
   constructor(props: MyProps){
     super(props);
 
-    this.state = {users: [], searchField: ''}
+    this.state = {users: [], searchField: '', title: ""}
   }
 
   componentDidMount() {
@@ -29,13 +30,13 @@ export default class App extends React.Component<MyProps, MyState> {
 
   render(){
 
-    const {users, searchField} = this.state;
+    const {users, searchField, title} = this.state;
     
     const filteredMonsters = users.filter((monster: { name: string; }) => monster.name.toLowerCase().includes(searchField.toLowerCase()));
 
     return(
       <div className="App">
-      <h1>Monsters Rolodex</h1>
+      <h1>{title}</h1>
 
         <SearchBox placeHolder="monsters" handleChange={(e: { target: { value: any; }; }) => 
         this.setState({searchField: e.target.value }, () => {
